@@ -1,0 +1,41 @@
+<nz-layout>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo">
+      <img src="../assets/logo_large.svg" class="logo-img"/>
+    </div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
+      <li nz-submenu>
+        <span title><i class="anticon anticon-user"></i><span class="nav-text">User</span></span>
+        <ul>
+          <li nz-menu-item routerLink="/statchart" routerLinkActive="active">Tom</li>
+          <li nz-menu-item>Bill</li>
+          <li nz-menu-item routerLink="/settings" routerLinkActive="active">Alex</li>
+        </ul>
+      </li>
+      <li nz-submenu>
+        <span title><i class="anticon anticon-team"></i><span class="nav-text">Team</span></span>
+        <ul>
+          <li nz-menu-item>Team 1</li>
+          <li nz-menu-item>Team 2</li>
+        </ul>
+      </li>
+      <li nz-menu-item><span><i class="anticon anticon-file"></i><span class="nav-text">File</span></span></li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header style="background: #fff; padding:0;">
+      <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed" (click)="isCollapsed=!isCollapsed"></i>
+    </nz-header>
+    <nz-content style="margin:0 16px;">
+      <!--<nz-breadcrumb style="margin:12px 0;">
+        <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+      </nz-breadcrumb>-->
+      <div style="padding:12px; background: #fff; min-height: 360px;">
+        <h3>WELCOME TO SNWL DASHBOARD</h3>
+        <app-steptabs></app-steptabs>
+      </div>
+    </nz-content>
+    <nz-footer style="text-align: center;">Cyber Design ©2018 Implement By SunicTeam</nz-footer>
+  </nz-layout>
+</nz-layout>
