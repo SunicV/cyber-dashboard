@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 import { chartFactory } from './common';
+import { MapService } from '../../../@core/data/map.service';
 
 @Component({
   selector: 'sunicv-wannacry',
@@ -9,17 +10,29 @@ import { chartFactory } from './common';
 })
 
 export class WannacryComponent implements OnInit {
-  constructor() { }
+
+
+  cultural = [];
+
+  constructor(protected mapService: MapService) {
+  }
 
 
   chart = chartFactory();
-  projection =d3.geoEquirectangular()
-  .center([-40,20]);
+  projection = d3.geoEquirectangular()
+    .center([-40, 20]);
 
   //console.log(chart);
 
   ngOnInit() {
-    console.log(this.chart);
-    console.log(this.projection);
+
+
+    this.mapService.getCultural()
+      .then((cultural: any[]) => {
+        this.cultural = cultural;
+        console.log('cultural');
+        console.log(cultural);
+
+      });
   }
 }
