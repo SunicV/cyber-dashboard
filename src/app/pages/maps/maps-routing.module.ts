@@ -5,6 +5,7 @@ import { MapsComponent } from './maps.component';
 import { GmapsComponent } from './gmaps/gmaps.component';
 import { LeafletComponent } from './leaflet/leaflet.component';
 import { BubbleMapComponent } from './bubble/bubble-map.component';
+import {WannacryComponent} from './wannacry/wannacry.component';
 
 const routes: Routes = [{
   path: '',
@@ -18,6 +19,10 @@ const routes: Routes = [{
   }, {
     path: 'bubble',
     component: BubbleMapComponent,
+  },{
+    path: 'wannacry',
+    component: WannacryComponent,
+
   }],
 }];
 
@@ -32,4 +37,5 @@ export const routedComponents = [
   GmapsComponent,
   LeafletComponent,
   BubbleMapComponent,
+  WannacryComponent
 ];
