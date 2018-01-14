@@ -8,10 +8,23 @@ import 'rxjs/add/operator/toPromise';
 export class MapService {
     private culturalUrl = 'assets/mockdata/cultural.json';  // URL to web api
     private cultural: any[];
+    private worldUrl='assets/mockdata/110m.json'; 
+    private world: any[];
     constructor(private http: Http) { }
 
     getCultural(): Promise<any[]> {
         return this.http.get(this.culturalUrl)
+            .toPromise()
+            .then(response => {
+                console.log('response');
+                console.log(response);
+                return response.json();
+            })
+            .catch(this.handleError);
+    }
+
+    getWorld(): Promise<any[]> {
+        return this.http.get(this.worldUrl)
             .toPromise()
             .then(response => {
                 console.log('response');

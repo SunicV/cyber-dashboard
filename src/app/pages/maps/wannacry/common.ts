@@ -16,7 +16,13 @@ export function chartFactory() {
   //opts, proto = protoChart
   //  const chart = Object.assign({}, proto, opts);
   const chart = Object.assign({}, protoChart);
-  chart['svg'] = d3.select('body')
+
+  console.log('d3-select');
+  console.log(d3.select('.d3-chart'));
+
+  console.log(d3.select('body'));
+
+  chart['svg'] = d3.select('.d3-chart')
     .append('svg')
     .attr('id', chart['id'] || 'chart')
     .attr('width', chart.width - chart.margin.right)
