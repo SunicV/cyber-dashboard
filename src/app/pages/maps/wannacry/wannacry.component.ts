@@ -10,50 +10,71 @@ import {
 import {
   MapService
 } from '../../../@core/data/map.service';
+import { AfterViewChecked } from '@angular/core/src/metadata/lifecycle_hooks';
+import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap/tooltip/tooltip-config';
 
 @Component({
   selector: 'sunicv-wannacry',
   templateUrl: 'wannacry.component.html',
   styleUrls: ['./wannacry.component.scss'],
+  providers: [NgbTooltipConfig]
 })
 
-export class WannacryComponent implements OnInit {
-
-
+export class WannacryComponent implements OnInit, AfterViewChecked {
   cultural = [];
   world;
+  country;
+  countries;
+  drawed = false;
+  chart;
 
-  constructor(protected mapService: MapService) {}
-
-
-  chart ;
   projection = d3.geoEquirectangular()
     .center([-40, 20]);
 
-  //console.log(chart);
 
-  addToMap = (collection, key) => this.chart['container'].append('g')
-    .selectAll('path')
-    .data(topojson.feature(collection, collection.objects[key]).features)
-    .enter()
-    .append('path')
-    .attr('d', d3.geoPath().projection(this.projection))
-    .attr('stroke', '#505050')
-    .attr('stroke-width', 1)
-    .attr('stroke-opacity', 1)
-    .attr('fill','#000000')
-    .on('mouseover',function(d,i){
-      d3.select(this)
-        .attr("fill","#aaa");
-    })
-    .on('mouseout',function(d,i){
-      d3.select(this)
-        .transition()
-        .duration(500)
-        .attr('fill','#000000');
-    });
-  
+  constructor(protected mapService: MapService, config: NgbTooltipConfig) {
+    config.placement = "top";
+  }
+  ngOnInit() {
+    this.chart = chartFactory();
 
+    this.mapService.getCountry()
+      .then((country: any[]) => {
+        this.country = country;
+
+        this.countries = topojson.feature(this.country, this.country.objects['countries']).features;
+
+      });
+  }
+
+  ngAfterViewChecked() {
+    if (this.country && this.drawed == false) {
+      this.draw(this.country);
+    }
+  }
+
+  addToMap = (collection, key) => {
+    this.drawed = true;
+
+    var chart = d3.select('#container')
+      .selectAll('path')
+      .data(topojson.feature(collection, collection.objects[key]).features)
+      .attr('d', d3.geoPath().projection(this.projection))
+      .on('mouseover', function (d, i) {
+        d3.select(this)
+          .attr("fill", "#aaa");
+
+      })
+      .on('mouseout', function (d, i) {
+        d3.select(this)
+          .transition()
+          .duration(500)
+          .attr('fill', '#000000');
+      });
+
+    return chart;
+
+  }
 
   draw = (world) => {
     //const [sea, land, cultural] = worldData;
@@ -61,31 +82,8 @@ export class WannacryComponent implements OnInit {
     this.addToMap(world, 'countries')
       .classed('boundary', true);
 
-    this.chart['svg'].node().classList.add('map');
+    // this.chart['svg'].node().classList.add('map');
   };
-
-
-  ngOnInit() {
-    this.chart=chartFactory();
-/*     this.mapService.getCultural()
-      .then((cultural: any[]) => {
-        this.cultural = cultural;
-        console.log('cultural');
-        console.log(cultural);
-        console.log(this.chart);
-        this.draw(this.cultural);
-
-      }); */
-
-       this.mapService.getWorld()
-      .then((world: any[]) => {
-        this.world = world;
-        console.log('world');
-        console.log(world);
-        this.draw(this.world);
-
-      }); 
-  }
 
 
 }

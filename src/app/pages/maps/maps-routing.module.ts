@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MapsComponent } from './maps.component';
@@ -19,7 +19,7 @@ const routes: Routes = [{
   }, {
     path: 'bubble',
     component: BubbleMapComponent,
-  },{
+  }, {
     path: 'wannacry',
     component: WannacryComponent,
 
@@ -37,5 +37,5 @@ export const routedComponents = [
   GmapsComponent,
   LeafletComponent,
   BubbleMapComponent,
-  WannacryComponent
+  WannacryComponent,
 ];

@@ -1,6 +1,19 @@
 <nb-card>
     <nb-card-header>Wannacry Maps</nb-card-header>
     <nb-card-body>
-        <div class="d3-chart"></div>
+        <div class="d3-chart">
+            <svg>
+              <g id="container" transform="translate(10, 10)">
+                  <g>
+                      <path *ngFor="let country of countries"  container="body"
+                           ngbTooltip={{country.properties.NAME}} stroke="#505050"
+                           stroke-width=1 stroke-opacity=1 fill="#000000">
+                      </path>
+                  </g>
+              </g>
+          </svg>
+        </div>
     </nb-card-body>
+
+
 </nb-card>

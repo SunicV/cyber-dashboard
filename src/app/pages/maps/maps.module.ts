@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { LeafletModule } from '@asymmetrik/angular2-leaflet';
 import { AngularEchartsModule } from 'ngx-echarts';
@@ -14,6 +15,7 @@ import { MapsRoutingModule, routedComponents } from './maps-routing.module';
     MapsRoutingModule,
     AngularEchartsModule,
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   exports: [],
   declarations: [
     ...routedComponents,
