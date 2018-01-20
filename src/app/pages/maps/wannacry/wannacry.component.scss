@@ -1,9 +1,21 @@
-.d3-chart {
-    // background-color: rgb(80, 80, 80);
-}
+
 
 .card {
     padding: 50px 0;
     text-align: center;
     overflow: hidden
+}
+
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+
+  nb-card-body {
+    padding: nb-theme(card-padding) 0 0 0;
+  }
+
+  .d3-chart {
+    width: 100%;
+    height: nb-theme(card-height-large);
+  }
 }

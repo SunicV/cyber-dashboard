@@ -1,19 +1,60 @@
 <nb-card>
-    <nb-card-header>Wannacry Maps</nb-card-header>
-    <nb-card-body>
-        <div class="d3-chart">
-            <svg>
-              <g id="container" transform="translate(10, 10)">
-                  <g>
-                      <path *ngFor="let country of countries"  container="body"
-                           ngbTooltip={{country.properties.NAME}} stroke="#505050"
-                           stroke-width=1 stroke-opacity=1 fill="#000000">
-                      </path>
-                  </g>
-              </g>
-          </svg>
-        </div>
-    </nb-card-body>
+  <nb-card-header>Wannacry Maps</nb-card-header>
+  <nb-card-body>
+    <div style="position: absolute; left: 50px; top: 10px; z-index: 100;">
+      <div class="col-md-12">
+        <button id="connect-button" class="btn btn-info btn-sm" href="" (click)="start()" >
+          <span class="fa fa-play-circle"></span>&nbsp;Connect</button>
+      </div>
+      <div class="col-md-12">
+        <input id="hide-console" type="checkbox" (click)="hideConsole();"> Hide Console
+      </div>
+    </div>
+    <div class="d3-chart">
+      <svg width="1100" height="400">
+        <g id="container" transform="translate(10, 10)">
+          <g>
+            <path *ngFor="let country of countries" container="body" ngbTooltip={{country.properties.NAME}} stroke="#505050" stroke-width=1
+              stroke-opacity=1 fill="#000000">
+            </path>
+          </g>
+          <g *ngFor="let circle of circleArray">
+            <circle data-index="3" [attr.cx]="circle.point[0]" [attr.cy]="circle.point[1]"
+              fill="none" stroke="#FFF" fill-opacity="1" stroke-width="2"
+               stroke-opacity="1" r="1">
+                 <animate attributeName="r" dur="2s" values="6; 45" repeatCount="1"></animate>
+                 <animate attributeName="opacity" dur="2s" values="1;1;0" repeatCount="1"></animate>
+            </circle>
+            <circle [attr.cx]="circle.point[0]" [attr.cy]="circle.point[1]"
+               [attr.fill]="circle.fill" stroke="#505050" 
+               fill-opacity="1" stroke-width="1" 
+               stroke-opacity="1" r="6"
+               cursor="pointer">
+            </circle>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <table class="table" *ngIf="!hidecon" id="bot-console" style="background-color: black; opacity: 0.7; position: absolute; left: 15px; bottom: 0px; z-index: 100; width: 300px; height: 100px; margin: 0px; padding: 0px; color: white;">
+            <thead>
+            <tr>
+            <th>Country</th>
+            <th>Botnet</th>
+            </tr>
+            </thead>
+            <tbody id="con">
+                <tr height="40px" id={{data.id}}  *ngFor="let data of dataArray">
+                    <td width="200px;">
+                        <img height="16px" width="16px" src={{data.src}} /> 
+                        {{data.country}}
+                    </td>
+                    <td width="100px;"><b style={{data.style}}>{{data['b']}}</b></td>
+                </tr>
+
+            </tbody>
+            </table>
+  </nb-card-body>
 
 
 </nb-card>
