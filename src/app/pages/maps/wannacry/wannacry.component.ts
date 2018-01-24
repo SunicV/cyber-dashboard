@@ -131,9 +131,9 @@ export class WannacryComponent implements OnInit, AfterViewChecked {
   {
     data.id="c"+this.g_i;
     this.g_i++;
-    data.src="//intel.malwaretech.com/img/flags/" + data['c'].toLowerCase() + ".png";
+    data.src="./assets/images/flags/" + data['c'].toLowerCase() + ".png";
     data.country=this.countryMap[data['c']];
-    data.style="color:" + data['co'] + ";";
+    data.color=data['co'];
     if(this.dataArray.length>4){
       this.dataArray.shift();
     }

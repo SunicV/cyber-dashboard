@@ -34,9 +34,12 @@
           </g>
         </g>
       </svg>
+      <div class="zoomin">+</div>
+      <div class="zoomout">-</div>
     </div>
 
-    <table class="table" *ngIf="!hidecon" id="bot-console" style="background-color: black; opacity: 0.7; position: absolute; left: 15px; bottom: 0px; z-index: 100; width: 300px; height: 100px; margin: 0px; padding: 0px; color: white;">
+    <table class="table" *ngIf="!hidecon" id="bot-console"
+     style="background-color: black; opacity: 0.7; position: absolute; left: 15px; bottom: 0px; z-index: 100; width: 300px; height: 100px; margin: 0px; padding: 0px; color: white;">
             <thead>
             <tr>
             <th>Country</th>
@@ -49,7 +52,7 @@
                         <img height="16px" width="16px" src={{data.src}} /> 
                         {{data.country}}
                     </td>
-                    <td width="100px;"><b style={{data.style}}>{{data['b']}}</b></td>
+                    <td width="100px;"><b  [style.color]="data.color">{{data['b']}}</b></td>
                 </tr>
 
             </tbody>

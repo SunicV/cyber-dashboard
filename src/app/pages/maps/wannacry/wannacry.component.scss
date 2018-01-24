@@ -17,5 +17,39 @@
   .d3-chart {
     width: 100%;
     height: nb-theme(card-height-large);
+    display: flex;
+    align-items: center;
   }
+  .zoomin{
+    top: 10px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 10px;
+    border-radius: 3px;
+    background: #292929;
+    padding: 3px;
+    color: white;
+    cursor: pointer;
+    line-height: 10px;
+    text-align: center;
+    box-sizing: content-box;
+  }
+  .zoomout{
+    top: 30px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 10px;
+    border-radius: 3px;
+    background: #292929;
+    padding: 3px;
+    color: white;
+    cursor: pointer;
+    line-height: 10px;
+    text-align: center;
+    box-sizing: content-box;
+  }
+
+
 }
